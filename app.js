@@ -25,8 +25,7 @@ app.post("/login", async (req, res) => {
 });
 
 app.put("/brewery/:id/ratings", async (req, res) => {
-  const brewery = await breweryService._put(req, res);
-  res.status(200).json({ message: "Ratings updated", brewery });
+  return await breweryService._put(req, res);
 });
 
 app.get("/brewery/:id/ratings", async (req, res) => {

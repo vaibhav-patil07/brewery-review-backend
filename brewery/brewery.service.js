@@ -35,11 +35,14 @@ const breweryService = {
       description,
     });
     await ratingsObject.save();
-    return {
+
+    const updatedBrewery = {
       id: brewery.id,
       ratings: brewery.ratings,
       votes: brewery.votes,
     };
+
+    return res.status(200).json({ message: "Ratings updated", updatedBrewery });
   },
   _get: async (req, res) => {
     const { id } = req.body;
@@ -68,6 +71,7 @@ const breweryService = {
       email: userRatings.email,
       ratings: userRatings.ratings,
       brewery_id: userRatings.brewery_id,
+      description: userRatings.description,
     };
     return res.status(200).json(ratings);
   },
