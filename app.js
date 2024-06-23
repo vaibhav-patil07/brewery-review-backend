@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/signup", async (req, res) => {
-  const user = await userService._post(req, res);
+  const user = await userService._signup(req, res);
   res.status(201).json({ message: "Signup successful", user });
 });
 
@@ -24,9 +24,17 @@ app.post("/login", async (req, res) => {
   return result;
 });
 
-app.put("/brewery/:id", async (req, res) => {
+app.put("/brewery/:id/ratings", async (req, res) => {
   const brewery = await breweryService._put(req, res);
   res.status(200).json({ message: "Ratings updated", brewery });
+});
+
+app.get("/brewery/:id/ratings", async (req, res) => {
+  return await breweryService._get(req, res);
+});
+
+app.get("/users/brewery/:id/ratings", async (req, res) => {
+  return breweryService._getUserRating(req, res);
 });
 
 mongoose.connect(process.env.MONGODB_URI).then(() => {

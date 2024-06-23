@@ -7,4 +7,13 @@ const brewerySchema = new mongoose.Schema({
 });
 const breweryModel = mongoose.model("Brewery", brewerySchema);
 
-module.exports = { breweryModel };
+const ratingsSchema = new mongoose.Schema({
+  brewery_id: String,
+  email: String,
+  ratings: Number,
+  description: String,
+});
+
+const ratingsModel = mongoose.model("ratings", ratingsSchema);
+
+module.exports = { breweryModel, ratingsModel };
